@@ -24,7 +24,7 @@ test('verify amazon footer links',async({page})=>{
 })
 
 
-test.only(`datadriven test for arrays`, async ({ page }) => {
+test(`datadriven test for arrays`, async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/')
    const users = [
