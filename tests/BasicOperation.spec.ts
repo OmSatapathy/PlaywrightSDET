@@ -25,7 +25,7 @@ test('Automation Practice Form', async ({ page }) => {
 });
 
 
-test.only('validate button functinality', async ({ page }) => {
+test('validate button functinality', async ({ page }) => {
 
      await page.goto('https://www.tutorialspoint.com/selenium/practice/text-box.php');
 
@@ -43,3 +43,26 @@ test.only('validate button functinality', async ({ page }) => {
 
 });
 
+
+
+test.only('verify links',async({page})=>{
+    await page.goto('https://www.tutorialspoint.com/selenium/practice/text-box.php');
+
+    const verifyLinks = new seleniumform(page);
+
+    await verifyLinks.clickOnLinks();
+
+})
+
+
+test('Upload file test', async ({ page }) => { 
+
+    await page.goto('https://www.tutorialspoint.com/selenium/practice/text-box.php');
+    const uploadFile = new seleniumform(page);
+
+    await uploadFile.clickOnUploadFileLink();
+
+    await page.setInputFiles("//input[@id='uploadFile']", "C:\\Users\\pc\\Downloads\\Interview Questions\\SQL.pdf");
+    await page.waitForTimeout(5000);
+    
+})
