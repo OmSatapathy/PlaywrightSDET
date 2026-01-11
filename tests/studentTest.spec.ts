@@ -19,3 +19,7 @@ test('Student Registration Form',async({page})=>{
     await studentDetails.uploadFile('C:\\Users\\pc\\Downloads\\Interview Questions\\SQL.pdf');
   
 })
+
+
+
+
