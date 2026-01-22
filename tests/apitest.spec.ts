@@ -138,5 +138,17 @@ test.describe.serial('API test', async () => {
         expect(body).toContain('Octa core');
 
     })
+
+
+    test('delete item from the list', async({request})=>{
+        const response =     await request.delete(`${baseURL}/objects/${id}`)
+
+         console.log(await response.json())
+        expect(response.status()).toBeTruthy()
+        const body = await response.text();
+        expect(body).toContain(id + ' has been deleted.');
+
+       
+    })
 })
 
