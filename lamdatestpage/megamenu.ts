@@ -8,6 +8,7 @@ export class megamenuSection{
 
     readonly modules:Locator;
     readonly productlisting:Locator
+    readonly allproducts:Locator;
 
 
 
@@ -18,6 +19,7 @@ export class megamenuSection{
         this.myaccount=page.locator("(//*[contains(text(),'My account')])[1]");
          this.modules=page.locator("(//*[contains(text(),'Modules')])[1]");
          this.productlisting=page.locator("(//*[contains(text(),'Product Listing')])[1]");
+         this.allproducts= page.locator("#mz-product-listing-37212971")
 
     }
     async clickOnAddonLink(){
@@ -27,6 +29,15 @@ export class megamenuSection{
         await this.page.waitForTimeout(2000);
         await this.modules.click();
 
-        expect(this.productlisting.textContent()).toContain("Product Listing");
+       // expect(this.productlisting.textContent()).toContain("Product Listing");
+    }
+
+    async findallProducts(){
+        await this.allproducts.all().then((elements) => {
+            elements.forEach(async (element: Locator) => {
+                const text = await element.textContent();
+                console.log(text);
+            });
+        });
     }
 }

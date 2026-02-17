@@ -29,5 +29,6 @@ test("Verify mega menu options", async ({ page }) => {
 
     const megamenuobj = new megamenuSection(page);
     await megamenuobj.clickOnAddonLink();
+    await megamenuobj.findallProducts();
 
 })
