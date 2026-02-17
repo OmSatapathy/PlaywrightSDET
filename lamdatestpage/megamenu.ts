@@ -9,7 +9,8 @@ export class megamenuSection {
     readonly modules: Locator;
     readonly productlisting: Locator
     readonly allproducts: Locator;
-    readonly price: Locator
+    readonly price: Locator;
+    readonly categorywall:Locator
 
 
 
@@ -22,6 +23,7 @@ export class megamenuSection {
         this.productlisting = page.locator("(//*[contains(text(),'Product Listing')])[1]");
         this.allproducts = page.locator("#mz-product-listing-37212971")
         this.price = page.locator("//div[@class='price']")
+        this.categorywall = page.locator("//div[@class='figure-caption']")
 
     }
     async clickOnAddonLink() {
@@ -45,6 +47,15 @@ export class megamenuSection {
 
     async findPriceOfProducts() {
         await this.price.all().then((elements) => {
+            elements.forEach(async (element: Locator) => {
+                const text = await element.textContent();
+                console.log(text);
+            });
+        });
+    }
+
+    async verifyCategoryWall() {
+        await this.categorywall.all().then((elements) => {
             elements.forEach(async (element: Locator) => {
                 const text = await element.textContent();
                 console.log(text);

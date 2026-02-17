@@ -32,5 +32,6 @@ test("Verify mega menu options", async ({ page }) => {
     await megamenuobj.findallProducts();
     await page.waitForResponse((response) => response.url().includes("https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/page&page_id=10") && response.status() === 200);
     await megamenuobj.findPriceOfProducts();
+    await megamenuobj.verifyCategoryWall();
 
 })
