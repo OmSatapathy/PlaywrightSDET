@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { LamdaTestPage } from '../lamdatestpage/homepage';
 import { megamenuSection } from '../lamdatestpage/megamenu';
+import { trace } from 'console';
+
+test.use({
+    viewport: { width: 1780, height: 1520 },
+    headless: false,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+});
 
 test.beforeEach(async ({ page }) => {
     await page.goto("https://ecommerce-playground.lambdatest.io/");
