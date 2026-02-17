@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { LamdaTestPage } from '../lamdatestpage/homepage';
+import { megamenuSection } from '../lamdatestpage/megamenu';
+
+test.beforeEach(async ({ page }) => {
+    await page.goto("https://ecommerce-playground.lambdatest.io/");
+    await page.waitForResponse((response) => response.url().includes("https://ecommerce-playground.lambdatest.io/") && response.status() === 200);
+})
 
 
 test("verify the dropdown options", async ({ page }) => {
@@ -15,5 +21,13 @@ test("verify the dropdown options", async ({ page }) => {
     });
 
     await lamdaTestPage.verifyShopByCatagory()
+
+})
+
+
+test("Verify mega menu options", async ({ page }) => {
+
+    const megamenuobj = new megamenuSection(page);
+    await megamenuobj.clickOnAddonLink();
 
 })
