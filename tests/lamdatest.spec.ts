@@ -14,4 +14,6 @@ test("verify the dropdown options", async ({ page }) => {
         expect(text).toContain('bag');
     });
 
+    await lamdaTestPage.verifyShopByCatagory()
+
 })
