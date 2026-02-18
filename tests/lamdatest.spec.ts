@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LamdaTestPage } from '../lamdatestpage/homepage';
 import { megamenuSection } from '../lamdatestpage/megamenu';
 import { trace } from 'console';
+import { MyAccountPage } from '../lamdatestpage/myaccount';
 
 test.use({
     viewport: { width: 1780, height: 1520 },
@@ -42,5 +43,14 @@ test("Verify mega menu options", async ({ page }) => {
     await page.waitForResponse((response) => response.url().includes("https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/page&page_id=10") && response.status() === 200);
     await megamenuobj.findPriceOfProducts();
     await megamenuobj.verifyCategoryWall();
+
+})
+
+
+
+test("Verify login with invalid credentials", async ({ page }) => {
+
+    const myAccountPage = new MyAccountPage(page);
+    await myAccountPage.navigateToLoginPage();
 
 })
