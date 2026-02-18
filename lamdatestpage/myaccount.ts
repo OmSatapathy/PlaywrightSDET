@@ -9,7 +9,10 @@ export class MyAccountPage{
     readonly passwordfeild:Locator;
     readonly loginButton:Locator;
 
+    readonly rightpanel:Locator
+
     readonly errorMessage: string = ' Warning: No match for E-Mail Address and/or Password.'
+ readonly errorMessage2: string = ' Warning: No match for E-Mail Address and/or Password.'
 
     constructor(page:Page){
         this.page=page;
@@ -18,6 +21,8 @@ export class MyAccountPage{
         this.emailfeild=page.locator("#input-email");
         this.passwordfeild=page.locator("#input-password");
         this.loginButton=page.locator("input[value='Login']");
+
+        this.rightpanel=page.locator("div[class='list-group mb-3'] a");
     }
 
 
@@ -31,6 +36,30 @@ export class MyAccountPage{
         await this.passwordfeild.fill("rakesh@123")
         await this.loginButton.click();
         
-        expect(this.page.locator("div[class='alert alert-danger alert-dismissible']")).toHaveText(this.errorMessage);
+        expect(this.page.locator("div[class='alert alert-danger alert-dismissible']")).toHaveText(this.errorMessage || this.errorMessage2);
     }
+
+
+  async verifyRightPanelOptions() {
+    const expectedOptions = [
+        'My Account',
+        'Address Book',
+        'Wish List',
+        'Order History',
+        'Downloads',
+        'Recurring payments',
+        'Reward Points',
+        'Returns',
+        'Transactions',
+        'Newsletter',
+        'Logout'
+    ];
+
+    const actualOptions = (await this.rightpanel.allTextContents())
+        .map(text => text.trim());
+
+    for (const option of expectedOptions) {
+        await expect(actualOptions).toContain(option);
+    }
+}
 }

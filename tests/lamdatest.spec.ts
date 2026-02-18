@@ -52,5 +52,6 @@ test("Verify login with invalid credentials", async ({ page }) => {
 
     const myAccountPage = new MyAccountPage(page);
     await myAccountPage.navigateToLoginPage();
+    await myAccountPage.verifyRightPanelOptions();
 
 })
